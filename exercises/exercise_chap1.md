@@ -156,17 +156,17 @@ The old output layer has 10 neurons, one per digit. For an input image of digit 
 The new layer has 4 neurons, one for each bit $b_3 b_2 b_1 b_0$ of the digit in binary ($2^4 = 16 \ge 10$). We need a $4 \times 10$ weight matrix $W$ and a bias vector $b$ with 4 entries, so that the new neuron for each bit outputs close to $1$ when the bit is $1$, and close to $0$ when the bit is $0$.
 
 | Digit | $b_3$ | $b_2$ | $b_1$ | $b_0$ |
-|:-----:|:-----:|:-----:|:-----:|:-----:|
-| 0 | 0 | 0 | 0 | 0 |
-| 1 | 0 | 0 | 0 | 1 |
-| 2 | 0 | 0 | 1 | 0 |
-| 3 | 0 | 0 | 1 | 1 |
-| 4 | 0 | 1 | 0 | 0 |
-| 5 | 0 | 1 | 0 | 1 |
-| 6 | 0 | 1 | 1 | 0 |
-| 7 | 0 | 1 | 1 | 1 |
-| 8 | 1 | 0 | 0 | 0 |
-| 9 | 1 | 0 | 0 | 1 |
+| :---: | :---: | :---: | :---: | :---: |
+|   0   |   0   |   0   |   0   |   0   |
+|   1   |   0   |   0   |   0   |   1   |
+|   2   |   0   |   0   |   1   |   0   |
+|   3   |   0   |   0   |   1   |   1   |
+|   4   |   0   |   1   |   0   |   0   |
+|   5   |   0   |   1   |   0   |   1   |
+|   6   |   0   |   1   |   1   |   0   |
+|   7   |   0   |   1   |   1   |   1   |
+|   8   |   1   |   0   |   0   |   0   |
+|   9   |   1   |   0   |   0   |   1   |
 
 ### Idea
 
@@ -176,12 +176,12 @@ Each bit neuron should "listen" only to the old output neurons whose digit has t
 - Weight $0$ from every digit whose bit is $0$.
 - Bias $-10$, so the neuron stays off unless one of its "listened-to" digits is on.
 
-| Bit | Digits with the bit set to 1 |
-|:---:|:----------------------------:|
-| $b_3$ | 8, 9 |
-| $b_2$ | 4, 5, 6, 7 |
-| $b_1$ | 2, 3, 6, 7 |
-| $b_0$ | 1, 3, 5, 7, 9 |
+|  Bit  | Digits with the bit set to 1 |
+| :---: | :--------------------------: |
+| $b_3$ |             8, 9             |
+| $b_2$ |          4, 5, 6, 7          |
+| $b_1$ |          2, 3, 6, 7          |
+| $b_0$ |        1, 3, 5, 7, 9         |
 
 ### Answer
 
@@ -240,7 +240,7 @@ In both cases the output is either at least $0.99$ or below $0.01$, so the 4 new
 > fixed $\epsilon > 0$. Prove that the choice of $\Delta v$ which minimizes $\nabla C \cdot \Delta v$ is
 > $\Delta v = -\eta \nabla C$, where $\eta = \epsilon / \|\nabla C\|$ is determined by the size constraint $\|\Delta v\| = \epsilon$.
 >
-> *Hint: Cauchy-Schwarz inequality.*
+> _Hint: Cauchy-Schwarz inequality._
 
 ---
 
@@ -327,11 +327,11 @@ $$
 
 Now there are only two directions to move in: left or right. The rule picks the one that goes downhill.
 
-| Slope $C'(v)$ | Update | Move |
-|:---:|:---:|:---:|
-| $> 0$ (curve rising) | $v$ decreases | left |
+|     Slope $C'(v)$     |    Update     | Move  |
+| :-------------------: | :-----------: | :---: |
+| $> 0$ (curve rising)  | $v$ decreases | left  |
 | $< 0$ (curve falling) | $v$ increases | right |
-| $= 0$ | $v$ unchanged | stop |
+|         $= 0$         | $v$ unchanged | stop  |
 
 With a fixed-size step $|\Delta v| = \epsilon$, Exercise 4 reduces to $\Delta v = -\epsilon\,\operatorname{sign}\!\big(C'(v)\big)$. This gives $\Delta C \approx -\epsilon\,|C'(v)|$, which is never positive.
 
@@ -364,7 +364,7 @@ $$
 > weights and biases according to the rules
 > $w_k \to w_k' = w_k - \eta\,\partial C_x / \partial w_k$ and $b_l \to b_l' = b_l - \eta\,\partial C_x / \partial b_l$.
 > Then we choose another training input, and update the weights and biases again. And so on, repeatedly. This procedure is known as
-> *online*, *on-line*, or *incremental* learning. In online learning, a neural network learns from just one training input at a
+> _online_, _on-line_, or _incremental_ learning. In online learning, a neural network learns from just one training input at a
 > time (just as human beings do). Name one advantage and one disadvantage of online learning, compared to stochastic gradient
 > descent with a mini-batch size of, say, 20.
 
@@ -374,10 +374,10 @@ $$
 
 Both methods update the parameters using the same kind of rule. The only difference is how many training examples are used to estimate the gradient before each update.
 
-| Method | Examples per update | Gradient used |
-|:---|:---:|:---|
-| Online learning | $1$ | $\nabla C_x$ |
-| Mini-batch SGD | $20$ | $\dfrac{1}{20}\displaystyle\sum_{j=1}^{20} \nabla C_{x_j}$ |
+| Method          | Examples per update | Gradient used                                              |
+| :-------------- | :-----------------: | :--------------------------------------------------------- |
+| Online learning |         $1$         | $\nabla C_x$                                               |
+| Mini-batch SGD  |        $20$         | $\dfrac{1}{20}\displaystyle\sum_{j=1}^{20} \nabla C_{x_j}$ |
 
 The full gradient is $\nabla C = \dfrac{1}{n}\sum_x \nabla C_x$. Both methods estimate it from a sample, and the sample is much smaller (and noisier) for online learning.
 
@@ -400,14 +400,14 @@ The gradient from a single example is a very noisy estimate of the true gradient
 
 ### Summary
 
-| | Online ($1$) | Mini-batch ($20$) |
-|:---|:---|:---|
-| Updates per epoch | $n$ | $n/20$ |
-| Gradient estimate | Very noisy | Less noisy |
-| Cost per update | Cheapest | Higher, but vectorizes well |
-| Behaviour of cost | Bounces around | Smoother |
+|                   | Online ($1$)   | Mini-batch ($20$)           |
+| :---------------- | :------------- | :-------------------------- |
+| Updates per epoch | $n$            | $n/20$                      |
+| Gradient estimate | Very noisy     | Less noisy                  |
+| Cost per update   | Cheapest       | Higher, but vectorizes well |
+| Behaviour of cost | Bounces around | Smoother                    |
 
-**Answer.** *Advantage:* online learning makes far more frequent updates, and it can learn immediately from one example at a time. *Disadvantage:* each update uses a very noisy gradient estimate, and it loses the speed benefit of vectorized mini-batch computation. $\blacksquare$
+**Answer.** _Advantage:_ online learning makes far more frequent updates, and it can learn immediately from one example at a time. _Disadvantage:_ each update uses a very noisy gradient estimate, and it loses the speed benefit of vectorized mini-batch computation. $\blacksquare$
 
 ## Exercise 7 - Matrix form of a layer's activations
 

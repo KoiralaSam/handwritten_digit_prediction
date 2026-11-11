@@ -1,0 +1,16 @@
+*~
+*.org
+*.pem
+*.pkl
+*.pyc
+.DS_Store
+loc.py
+src/ec2
+.venv/
+.env
+venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# MNIST dataset (17 MB) - download it, see README
+data/mnist.pkl.gz
